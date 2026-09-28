@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI House Price Predictor</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <div class="ai-badge">AI + Python</div>
+
+        <h1>🏠 House Price Predictor</h1>
+
+        <p>
+            Enter the house details and let the
+            Machine Learning model estimate its price.
+        </p>
+    </div>
+
+
+    <div class="card">
+
+        <form method="POST">
+
+            <label>📐 House Size (m²)</label>
+
+           <input
+                type="number"
+                name="size"
+                placeholder="Example: 150"
+                value="{{ size if size is not none else '' }}"
+                min="30"
+                step="0.1"
+                required>
+
+
+            <label>🛏 Number of Bedrooms</label>
+
+            <input
+                type="number"
+                name="bedrooms"
+                placeholder="Example: 3"
+                value="{{ bedrooms if bedrooms is not none else '' }}"
+                min="1"
+                step="1"
+                required>
+
+
+            <label>📅 House Age (years)</label>
+
+           <input
+                type="number"
+                name="age"
+                placeholder="Example: 3"
+                value="{{ age if age is not none else '' }}"
+                min="0"
+                step="0.1"
+                required>
+
+
+            <button type="submit">
+                🤖 Predict House Price
+            </button>
+
+        </form>
+
+
+        {% if prediction %}
+
+        <div class="prediction">
+
+            <p>AI ESTIMATED PRICE</p>
+
+            <h2>{{ prediction }}</h2>
+
+            <span>
+                Prediction generated using a
+                scikit-learn Machine Learning model
+            </span>
+
+        </div>
+        <div class="chart-card">
+
+    <h3>📊 AI Prediction Visualization</h3>
+
+    <p>
+        Historical house prices compared with
+        your AI prediction.
+    </p>
+
+    <img
+        src="data:image/png;base64,{{ chart }}"
+        alt="House Price Prediction Chart">
+
+    <div class="house-summary">
+
+        <span>
+            📐 {{ size }} m²
+        </span>
+
+        <span>
+            🛏 {{ bedrooms }} Bedrooms
+        </span>
+
+        <span>
+            📅 {{ age }} Years Old
+        </span>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+
+    </div>
+
+
+    <div class="workflow">
+
+        <h3>How the AI Works</h3>
+
+        <div class="steps">
+
+            <span>📊 Data</span>
+            <b>→</b>
+
+            <span>🐼 Pandas</span>
+            <b>→</b>
+
+            <span>🔢 NumPy</span>
+            <b>→</b>
+
+            <span>🧠 ML Model</span>
+            <b>→</b>
+
+            <span>💰 Prediction</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+
+        Built with
+        <strong>Python • Pandas • NumPy • Flask • scikit-learn</strong>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
